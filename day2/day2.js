@@ -68,26 +68,10 @@ Etape 4 : Addition de tous les score de tous les tableaux
 
 */
 
-//! Etape 1
-const dataFormatted = data.split("\n");
-console.log("dataFormatted ==> ", dataFormatted);
+(findScore = (data) => {
 
-//! Etpape 2 et 3
-/* 
-Rappel des combinaisons :
-AX => 3
-AY => 6
-AZ => 0
-
-BX => 0
-BY => 3
-BZ => 6
-
-CX => 6
-CY => 0
-CZ => 3 */
-
-let score = [];
+    const dataFormatted = data.split("\n");
+    let score = [];
 for (const elem of dataFormatted) {
 
   let scoreType = 0;
@@ -134,22 +118,17 @@ for (const elem of dataFormatted) {
   score.push(scoreWin + scoreType);
 
 };
-console.log("score ==> ", score);
 
-
-//! Etape 4
-const scoreTotal = score.reduce((acc, curr) => acc + curr) 
+const scoreTotal = score.reduce((acc, curr) => acc + curr);
 console.log("scoreTotal ==> ", scoreTotal);
-
+})(data);
 
 
 
 
 //!  Exo 2 :
 
-
 /* 
-
 ADVERSAIRE
 A => Pierre 
 B => Papier
@@ -169,10 +148,13 @@ si second chiffre vaut X => je regarde la premiére lettre, si A, je joue Z (cis
 si X => combinaison : AZ, BX, CY
 si Y => combinaison : AX, BY, CZ
 si Z => combinaison : AY, BZ, CX
-
 */
 
+
+(findTrueScore = (data) => {
+
 let trueScore = [];
+
 for (const elem of dataFormatted) {
 
   let scoreType = 0;
@@ -231,9 +213,9 @@ for (const elem of dataFormatted) {
   trueScore.push(scoreWin + scoreType);
 
 };
-console.log("trueScore ==> ", trueScore);
 
-
-//! Etape 4
 const trueScoreTotal = trueScore.reduce((acc, curr) => acc + curr) 
 console.log("trueScoreTotal ==> ", trueScoreTotal);
+
+})(data);
+
