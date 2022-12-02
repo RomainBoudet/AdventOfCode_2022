@@ -2,6 +2,8 @@
 const { readFileSync } = require("fs");
 const data = readFileSync("day2.data", { encoding: "utf-8" });
 
+
+//! Exo 2 : 
 // premiére colonne : joué par l'adversaire
 // Deuxieme colonne joué par moi
 
@@ -140,3 +142,98 @@ const scoreTotal = score.reduce((acc, curr) => acc + curr)
 console.log("scoreTotal ==> ", scoreTotal);
 
 
+
+
+
+//!  Exo 2 :
+
+
+/* 
+
+ADVERSAIRE
+A => Pierre 
+B => Papier
+C => Cisseaux
+
+Moi
+X => 1 Pierre
+Y => 2 Papier
+Z => 3 Cisseaux
+
+New rules :
+X => perte 0
+Y => nul 3
+Z => win 6
+
+si second chiffre vaut X => je regarde la premiére lettre, si A, je joue Z (cisseau), si B, je joue X (pierre), si C, je joue Y (papier)
+si X => combinaison : AZ, BX, CY
+si Y => combinaison : AX, BY, CZ
+si Z => combinaison : AY, BZ, CX
+
+*/
+
+let trueScore = [];
+for (const elem of dataFormatted) {
+
+  let scoreType = 0;
+  let scoreWin = 0;
+  let newCharact = '';
+
+  if (elem === "A X") {
+    scoreWin = 0;
+    newCharact = 'Z'
+  }
+  if (elem === "A Y") {
+    scoreWin = 3;
+    newCharact = 'X'
+  }
+  if (elem === "A Z") {
+    scoreWin = 6;
+    newCharact = 'Y'
+  }
+
+  if (elem === "B X") {
+    scoreWin = 0;
+    newCharact = 'X';
+  }
+  if (elem === "B Y") {
+    scoreWin = 3;
+    newCharact = 'Y';
+  }
+  if (elem === "B Z") {
+    scoreWin = 6;
+    newCharact = 'Z';
+  }
+
+  if (elem === "C X") {
+    scoreWin = 0;
+    newCharact = 'Y'
+  }
+  if (elem === "C Y") {
+    scoreWin = 3;
+    newCharact = 'Z'
+  }
+  if (elem === "C Z") {
+    scoreWin = 6;
+    newCharact = "X"
+  }
+
+
+  if (newCharact === "X") {
+    scoreType = 1;
+  }
+  if (newCharact === "Y") {
+    scoreType = 2;
+  }
+  if (newCharact === "Z") {
+    scoreType = 3;
+  }
+  trueScore.push(scoreWin + scoreType);
+
+};
+console.log("trueScore ==> ", trueScore);
+
+
+//! Etape 4
+const trueScoreTotal = trueScore.reduce((acc, curr) => acc + curr) 
+console.log("trueScoreTotal ==> ", trueScoreTotal);
