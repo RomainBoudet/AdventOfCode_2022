@@ -17,7 +17,7 @@ const dataArrays = dataFormatted.map((item) =>
       )
     )
 );
-// console.log("dataArrays => ", dataArrays);
+console.log("dataArrays => ", dataArrays);
 
 // je compare si les éléments du tableau 1 inclue tous les élément du tableau 2 ou l'inverse
 let result = 0;
@@ -29,4 +29,18 @@ for (const item of dataArrays) {
   }
 
 }
-console.log ("result ==> ", result);
+console.log ("result exo1  ==> ", result);
+
+// je recherche les valeurs dupliquées dans un tableau ou j'ai concaténées les valeurs !
+let result2 = 0;
+for (const item of dataArrays) {
+
+
+// const arrayOfDuplicate = item[0].concat(item[1]).filter((item, index) => arr.indexOf(item) !== index)
+if (item[0].concat(item[1]).filter((item, index, arr) => arr.indexOf(item) !== index).length > 0){
+ result2 += 1;  
+}
+
+};
+
+console.log("result2 ==> ", result2);
